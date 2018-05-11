@@ -1,0 +1,67 @@
+package com.entity;
+
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+
+
+@Entity
+@Table(name="CUSTOMER")
+public class Customer {
+	
+	
+	@Id
+    @Column(name = "cid")
+    private int customerId;
+    @Column(name = "cname", length = 15)
+    private String customerName;
+    @Column(name = "ccity", length = 20)
+    private String customerCity;
+    
+    @OneToMany(targetEntity = Item.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "customer_id",referencedColumnName="cid")
+    private List<Item> items;
+    
+    
+    
+    
+    
+	
+	public List<Item> getItems() {
+		return items;
+	}
+	public void setItems(List<Item> items) {
+		this.items = items;
+	}
+	public int getCustomerId() {
+		return customerId;
+	}
+	public void setCustomerId(int customerId) {
+		this.customerId = customerId;
+	}
+	public String getCustomerName() {
+		return customerName;
+	}
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
+	}
+	public String getCustomerCity() {
+		return customerCity;
+	}
+	public void setCustomerCity(String customerCity) {
+		this.customerCity = customerCity;
+	}
+    
+    
+    
+    
+	
+
+}
